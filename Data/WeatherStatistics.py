@@ -69,13 +69,37 @@ temp_df_19_hr = hourly_data[["time", "temperature_2m (°F)","apparent_temperatur
 temp_df_19_hr['Temp SMA(72)'] = temp_df_19_hr["temperature_2m (°F)"].rolling(72).mean()
 temp_df_19_hr['App_Temp SMA(72)'] = temp_df_19_hr["apparent_temperature (°F)"].rolling(72).mean()
 temp_df_19_hr.set_index("time", inplace=True)
-temp_df_19_hr.plot()
+# temp_df_19_hr.plot()
 
 precip_df_19_hr = hourly_data[["time", "precipitation (inch)","rain (inch)","snowfall (inch)"]].copy().head(365*24)
 precip_df_19_hr.set_index("time", inplace=True)
-precip_df_19_hr.plot()
+# precip_df_19_hr.plot()
 
 sky_df_19_hr = hourly_data[["windspeed_10m (mp/h)", "windgusts_10m (mp/h)", "winddirection_10m (°)", "cloudcover (%)"]].copy().head(365*24)
-sky_df_19_hr.hist()
+# sky_df_19_hr.hist()
 
-# plt.show(block=True)
+
+####################
+# PLOTS (DAY)
+####################
+
+temp_df_19_day = daily_data[["time", "temperature_2m_max (°F)","temperature_2m_min (°F)"]].copy().head(365)
+temp_df_19_day['Min_Temp SMA(7)'] = temp_df_19_day["temperature_2m_min (°F)"].rolling(7).mean()
+temp_df_19_day['Max_Temp SMA(7)'] = temp_df_19_day["temperature_2m_max (°F)"].rolling(7).mean()
+temp_df_19_day.set_index("time", inplace=True)
+# temp_df_19_day.plot()
+
+precip_df_19_day = daily_data[["time", "rain_sum (inch)","snowfall_sum (inch)"]].copy().head(365)
+preciphrs_df_19_day = daily_data[["time", "precipitation_hours (h)"]].copy().head(365)
+precip_df_19_day.set_index("time", inplace=True)
+preciphrs_df_19_day.set_index("time", inplace=True)
+# precip_df_19_day.plot()
+# ax = preciphrs_df_19_day["precipitation_hours (h)"].plot(secondary_y=True, linewidth=1, linestyle='--')
+# ax.set_ylabel('hrs')
+
+
+sky_df_19_day = daily_data[["windspeed_10m_max (mp/h)","windgusts_10m_max (mp/h)"]].copy().head(365)
+# sky_df_19_day.hist()
+
+plt.show(block=True)
+
