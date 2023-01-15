@@ -1,0 +1,9 @@
+API INFO
+
+Twitter:
+	djlaskarzewski@gmail.com
+	1nd.S+udy
+
+	API Key: mPPuulVCnyBulZUaRRwHDj6Va
+	API Key Secret: 0JUsMZCSwMmMkMBUH4GgsaYuDBDIH4FPkprx6iD0BWmMghUcCv
+	Bearer Token: AAAAAAAAAAAAAAAAAAAAAO%2FglAEAAAAA0YojMEFOTUFCqk6YUS3V2DwLSAQ%3DKttZ7NTsaqmLiOH5mPBegbjGpxiftiS8L2fOldtXJcquLuhRkN
