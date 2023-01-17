@@ -1,5 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import datetime as dt
+from pprint import pprint
 
 
 # https://open-meteo.com/en/docs/historical-weather-api#latitude=42.36&longitude=-71.06&start_date=2022-12-11&end_date=2023-01-09&hourly=temperature_2m 
@@ -10,12 +12,14 @@ import matplotlib.pyplot as plt
 
 hourly_data = pd.read_csv("BostonHourlyWeather.csv")
 hourly_data["snowfall (inch)"] = hourly_data["snowfall (cm)"].div(2.54)
+# hourly_data["time"] = pd.to_datetime(hourly_data["time"])
 print("Total hourly row count: " + str(len(hourly_data)))
 print(hourly_data[0:3])
 print("\n\n\n")
 
 daily_data = pd.read_csv("BostonDailyWeather.csv")
 daily_data["snowfall_sum (inch)"] = daily_data["snowfall_sum (cm)"].div(2.54)
+daily_data["time"] = pd.to_datetime(daily_data["time"])
 print("Total daily row count: " + str(len(daily_data)))
 print(daily_data[0:3])
 print("\n\n\n")
@@ -61,6 +65,40 @@ desc_data_day['Max'] = daily_max
 print(desc_data_day)
 print("\n\n\n")
 
+
+
+####################
+# DESCRIPTIVE DATA (AVG)
+####################
+
+maxtemp_df_mo = daily_data[["time", "temperature_2m_max (°F)"]].copy()
+maxtemp_df_mo.set_index("time", inplace=True)
+
+avg_max_temp = maxtemp_df_mo.groupby([maxtemp_df_mo.index.month, maxtemp_df_mo.index.day]).mean()
+avg_max_temp.plot()
+
+# jan = daily_data[daily_data["time"].dt.month == 1]
+# jan.set_index("time", inplace=True)
+# print(jan)
+
+# months = {}
+# for i in range(len(daily_data)):
+#     mo = daily_data["time"][i].month
+#     if mo not in months:
+#         months[mo] = {mo:[]}
+
+#     day = daily_data["time"][i].day
+#     if day not in months[mo]:
+#         months[mo][day] = daily_data.iloc[i]
+#     elif type(months[mo][day]) == list:
+#            months[mo][day].append(daily_data.iloc[i])
+#     else:
+#         months[mo][day] = [months[mo][day], daily_data.iloc[i]]
+
+# print(months[8][17])
+
+
+
 ####################
 # PLOTS (HR)
 ####################
@@ -102,4 +140,8 @@ sky_df_19_day = daily_data[["windspeed_10m_max (mp/h)","windgusts_10m_max (mp/h)
 # sky_df_19_day.hist()
 
 plt.show(block=True)
+
+
+
+
 
