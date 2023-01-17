@@ -75,7 +75,7 @@ maxtemp_df_mo = daily_data[["time", "temperature_2m_max (°F)"]].copy()
 maxtemp_df_mo.set_index("time", inplace=True)
 
 avg_max_temp = maxtemp_df_mo.groupby([maxtemp_df_mo.index.month, maxtemp_df_mo.index.day]).mean()
-avg_max_temp.plot()
+# avg_max_temp.plot()
 
 # jan = daily_data[daily_data["time"].dt.month == 1]
 # jan.set_index("time", inplace=True)
